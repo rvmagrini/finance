@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,400;0,700;1,100;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+
+    <title>Finances</title>
+  </head>
+
+  <body>
+    <header>
+      <h1>finances</h1>
+    </header>
+
+    <main class="container">
+      <section class="summary">
+        <h2 class="sr-only">SUMMARY</h2>
+
+        <div class="card income">
+          <h3>
+            <span>income</span>
+            <img src="img/income.svg" alt="Income Image" />
+          </h3>
+
+          <p>350.00 $</p>
+        </div>
+
+        <div class="card spending">
+          <h3>
+            <span>spending</span>
+            <img src="img/spending.svg" alt="Spending Image" />
+          </h3>
+          <p>210.00 $</p>
+        </div>
+
+        <div class="card balance">
+          <h3>
+            <span>balance</span>
+            <img src="img/balance.svg" alt="Balance Image" />
+          </h3>
+          <p>140.00 $</p>
+        </div>
+      </section>
+
+      <section class="movements">
+        <h2 class="sr-only">MOVEMENTS</h2>
+
+        <a href="#" class="button new">
+          <div class="card new-mov">NEW MOVEMENT</div>
+        </a>
+
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>description</th>
+              <th>amount</th>
+              <th>date</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="icon">
+                <img src="img/minus.svg" alt="" />
+              </td>
+              <td class="description">Electricity</td>
+              <td class="spending">150.00 $</td>
+              <td class="date">28.04.2021</td>
+              <td class="delete">
+                <img src="img/delete.svg" alt="" />
+              </td>
+            </tr>
+            <tr>
+              <td class="icon">
+                <img src="img/minus.svg" alt="" />
+              </td>
+              <td class="description">Internet</td>
+              <td class="spending">40.00 $</td>
+              <td class="date">25.04.2021</td>
+              <td class="delete">
+                <img src="img/delete.svg" alt="" />
+              </td>
+            </tr>
+            <tr>
+              <td class="icon">
+                <img src="img/plus.svg" alt="" />
+              </td>
+              <td class="description">Web Design</td>
+              <td class="income">5550.00 $</td>
+              <td class="date">28.04.2021</td>
+              <td class="delete">
+                <img src="img/delete.svg" alt="" />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+
+    <footer>finances</footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
