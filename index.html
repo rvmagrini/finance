@@ -107,6 +107,52 @@
       </section>
     </main>
 
+    <div class="modal-overlay active">
+      <div class="modal">
+        <div class="form">
+          <h2>NEW MOVEMENT</h2>
+          <form action="">
+            <div class="input-group">
+              <label class="sr-only" for="description">Description</label>
+              <input
+                type="text"
+                id="description"
+                name="description"
+                placeholder="description"
+              />
+            </div>
+
+            <div class="input-group">
+              <label class="sr-only" for="amount">Amount</label>
+              <input
+                type="number"
+                step="0.01"
+                id="amount"
+                name="amount"
+                placeholder="amount"
+              />
+              <small class="help">Use the sign - (minus) for spendings.</small>
+            </div>
+
+            <div class="input-group">
+              <label class="sr-only" for="description">Date</label>
+              <input
+                type="date"
+                id="date"
+                name="date"
+                placeholder="DD/MM/YYYY"
+              />
+
+              <div class="input-group actions">
+                <a href="#" class="button cancel">CANCEL</a>
+                <button>SAVE</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
     <footer>finances</footer>
 
     <script src="script.js"></script>
