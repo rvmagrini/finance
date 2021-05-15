@@ -16,16 +16,14 @@ const Modal = {
   save() {},
 };
 
-const movements = [
-  { id: 1, description: "Electricity", amount: -40, date: "11/05/2021" },
-  { id: 2, description: "Internet", amount: -40, date: "08/05/2021" },
-  { id: 3, description: "Health Insurance", amount: -160, date: "05/05/2021" },
-  { id: 4, description: "Garage", amount: -550, date: "02/05/2021" },
-  { id: 5, description: "Salary", amount: 7500, date: "01/05/2021" },
-];
-
 const Movements = {
-  all: movements,
+  all: [
+    { description: "Electricity", amount: -40, date: "11/05/2021" },
+    { description: "Internet", amount: -40, date: "08/05/2021" },
+    { description: "Health Insurance", amount: -160, date: "05/05/2021" },
+    { description: "Garage", amount: -550, date: "02/05/2021" },
+    { description: "Salary", amount: 7500, date: "01/05/2021" },
+  ],
 
   add(movement) {
     Movements.all.push(movement);
@@ -127,6 +125,43 @@ const App = {
   reload() {
     DOM.clearMovements();
     App.init();
+  },
+};
+
+const Form = {
+  description: document.querySelector("input#description"),
+  amount: document.querySelector("input#amount"),
+  date: document.querySelector("input#date"),
+
+  getValues() {
+    return {
+      description: this.description.value,
+      amount: this.amount.value,
+      date: this.date.value,
+    };
+  },
+
+  validateFields() {
+    const { description, amount, date } = this.getValues();
+    if (
+      description.trim() === "" ||
+      amount.trim() === "" ||
+      date.trim() === ""
+    ) {
+      throw new Error("Please fill out all required fields.");
+    }
+  },
+  formatData() {},
+  submit(event) {
+    event.preventDefault();
+
+    try {
+      Form.validateFields();
+      Form.formatData();
+    } catch (error) {
+      const errorMsg = `<p>${error.message}</p>`;
+      document.querySelector(".form").insertAdjacentHTML("beforeend", errorMsg);
+    }
   },
 };
 
