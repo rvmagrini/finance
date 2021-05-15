@@ -32,6 +32,11 @@ const Movements = {
     App.reload();
   },
 
+  remove(index) {
+    Movements.all.splice(index, 1);
+    App.reload();
+  },
+
   incomes() {
     let income = 0;
     Movements.all.forEach((movement) => {
