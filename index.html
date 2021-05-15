@@ -54,7 +54,7 @@
       <section class="movements">
         <h2 class="sr-only">MOVEMENTS</h2>
 
-        <a href="#" class="button new">
+        <a href="#" onclick="Modal.open()" class="button-new">
           <div class="card new-mov">NEW MOVEMENT</div>
         </a>
 
@@ -107,7 +107,7 @@
       </section>
     </main>
 
-    <div class="modal-overlay active">
+    <div class="modal-overlay">
       <div class="modal">
         <div class="form">
           <h2>NEW MOVEMENT</h2>
@@ -129,9 +129,9 @@
                 step="0.01"
                 id="amount"
                 name="amount"
-                placeholder="amount"
+                placeholder="0,00"
               />
-              <small class="help">Use the sign - (minus) for spendings.</small>
+              <small class="help">use the sign - (minus) for spendings</small>
             </div>
 
             <div class="input-group">
@@ -144,8 +144,10 @@
               />
 
               <div class="input-group actions">
-                <a href="#" class="button cancel">CANCEL</a>
-                <button>SAVE</button>
+                <a href="#" onclick="Modal.close()" class="button cancel"
+                  >CANCEL</a
+                >
+                <button class="button save">SAVE</button>
               </div>
             </div>
           </form>
