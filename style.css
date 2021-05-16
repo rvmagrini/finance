@@ -69,7 +69,7 @@ h2 {
   font-weight: 400;
 }
 
-/* CARDS */
+/* CARDS ******************************/
 
 .card {
   padding: 1rem 2rem;
@@ -161,6 +161,7 @@ td.spending {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
   position: fixed;
+  z-index: 999;
   top: 0;
   display: flex;
   align-items: center;

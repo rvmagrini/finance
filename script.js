@@ -1,30 +1,31 @@
 "use strict";
 
-// TAGS
-
-const saveBtn = document.querySelector(".save");
-const cancelBtn = document.querySelector(".cancel");
-const modalWindow = document.querySelector(".modal-overlay");
-
 const Modal = {
+  modalWindow: document.querySelector(".modal-overlay"),
+
   open() {
-    modalWindow.classList.add("active");
+    Modal.modalWindow.classList.add("active");
     document.querySelector(".form .alert").innerHTML = "";
   },
   close() {
-    modalWindow.classList.remove("active");
+    Modal.modalWindow.classList.remove("active");
   },
   save() {},
 };
 
+const Storage = {
+  get() {
+    return JSON.parse(localStorage.getItem("finance:movements")) || [];
+    console.log(localStorage);
+  },
+
+  set(movements) {
+    localStorage.setItem("finance:movements", JSON.stringify(movements));
+  },
+};
+
 const Movements = {
-  all: [
-    { description: "Electricity", amount: -40, date: "11/05/2021" },
-    { description: "Internet", amount: -40, date: "08/05/2021" },
-    { description: "Health Insurance", amount: -160, date: "05/05/2021" },
-    { description: "Garage", amount: -550, date: "02/05/2021" },
-    { description: "Salary", amount: 7500, date: "01/05/2021" },
-  ],
+  all: Storage.get(),
 
   add(movement) {
     Movements.all.push(movement);
@@ -106,40 +107,6 @@ const DOM = {
   },
 };
 
-const Utils = {
-  formatAmount(value) {
-    value = Number(value);
-    return value;
-  },
-
-  formatDate(value) {
-    const splittedDate = value.split("-");
-    return splittedDate[2] + "." + splittedDate[1] + "." + splittedDate[0];
-  },
-
-  formatCurrency(value) {
-    value = value.toLocaleString("en-US", {
-      style: "currency",
-      currency: "USD",
-    });
-    return value;
-  },
-};
-
-const App = {
-  init() {
-    Movements.all.forEach((movement, index) => {
-      DOM.addMovement(movement, index);
-    });
-
-    DOM.updateSummary();
-  },
-  reload() {
-    DOM.clearMovements();
-    App.init();
-  },
-};
-
 const Form = {
   description: document.querySelector("input#description"),
   amount: document.querySelector("input#amount"),
@@ -147,14 +114,14 @@ const Form = {
 
   getValues() {
     return {
-      description: this.description.value,
-      amount: this.amount.value,
-      date: this.date.value,
+      description: Form.description.value,
+      amount: Form.amount.value,
+      date: Form.date.value,
     };
   },
 
   validateFields() {
-    const { description, amount, date } = this.getValues();
+    const { description, amount, date } = Form.getValues();
     if (
       description.trim() === "" ||
       amount.trim() === "" ||
@@ -164,11 +131,13 @@ const Form = {
     }
   },
   formatValues() {
-    let { description, amount, date } = this.getValues();
+    let { description, amount, date } = Form.getValues();
 
     amount = Utils.formatAmount(amount);
 
     date = Utils.formatDate(date);
+
+    console.log(date);
 
     return {
       description,
@@ -200,6 +169,42 @@ const Form = {
       const errorMsg = `<p>${error.message}</p>`;
       document.querySelector(".form .alert").innerHTML = errorMsg;
     }
+  },
+};
+
+const Utils = {
+  formatAmount(value) {
+    value = Number(value);
+    return value;
+  },
+
+  formatDate(value) {
+    const splittedDate = value.split("-");
+    return `${splittedDate[2]}.${splittedDate[1]}.${splittedDate[0]}`;
+  },
+
+  formatCurrency(value) {
+    value = value.toLocaleString("en-US", {
+      style: "currency",
+      currency: "USD",
+    });
+    return value;
+  },
+};
+
+const App = {
+  init() {
+    Movements.all.forEach((movement, index) => {
+      DOM.addMovement(movement, index);
+    });
+
+    DOM.updateSummary();
+
+    Storage.set(Movements.all);
+  },
+  reload() {
+    DOM.clearMovements();
+    App.init();
   },
 };
 
