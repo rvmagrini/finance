@@ -64,12 +64,13 @@ const DOM = {
 
   addMovement(movement, index) {
     const tr = document.createElement("tr");
-    tr.innerHTML = DOM.innerHTMLMovements(movement);
+    tr.innerHTML = DOM.innerHTMLMovements(movement, index);
+    tr.dataset.index = index;
 
     DOM.movementsContainer.appendChild(tr);
   },
 
-  innerHTMLMovements(movement) {
+  innerHTMLMovements(movement, index) {
     const isIncome = movement.amount > 0;
 
     const amount = Utils.formatCurrency(movement.amount);
@@ -82,7 +83,7 @@ const DOM = {
         <td class="description">${movement.description}</td>
         <td class="date">${movement.date}</td>
         <td class="delete">
-            <img src="img/delete.svg" alt="Delete Movement" />
+            <img onclick="Movements.remove(${index})" src="img/delete.svg" alt="Delete Movement" />
         </td>
         `;
     return html;
@@ -127,8 +128,8 @@ const Utils = {
 
 const App = {
   init() {
-    Movements.all.forEach((movement) => {
-      DOM.addMovement(movement);
+    Movements.all.forEach((movement, index) => {
+      DOM.addMovement(movement, index);
     });
 
     DOM.updateSummary();
