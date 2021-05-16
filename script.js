@@ -9,6 +9,7 @@ const modalWindow = document.querySelector(".modal-overlay");
 const Modal = {
   open() {
     modalWindow.classList.add("active");
+    document.querySelector(".form .alert").innerHTML = "";
   },
   close() {
     modalWindow.classList.remove("active");
@@ -105,6 +106,16 @@ const DOM = {
 };
 
 const Utils = {
+  formatAmount(value) {
+    value = Number(value);
+    return value;
+  },
+
+  formatDate(value) {
+    const splittedDate = value.split("-");
+    return splittedDate[2] + "." + splittedDate[1] + "." + splittedDate[0];
+  },
+
   formatCurrency(value) {
     value = value.toLocaleString("en-US", {
       style: "currency",
@@ -151,16 +162,42 @@ const Form = {
       throw new Error("Please fill out all required fields.");
     }
   },
-  formatData() {},
+  formatValues() {
+    let { description, amount, date } = this.getValues();
+
+    amount = Utils.formatAmount(amount);
+
+    date = Utils.formatDate(date);
+
+    return {
+      description,
+      amount,
+      date,
+    };
+  },
+
+  saveMovement(movement) {
+    Movements.add(movement);
+  },
+
+  clearForm() {
+    Form.description.value = "";
+    Form.amount.value = "";
+    Form.date.value = "";
+  },
+
   submit(event) {
     event.preventDefault();
 
     try {
       Form.validateFields();
-      Form.formatData();
+      const movement = Form.formatValues();
+      Form.saveMovement(movement);
+      Form.clearForm();
+      Modal.close();
     } catch (error) {
       const errorMsg = `<p>${error.message}</p>`;
-      document.querySelector(".form").insertAdjacentHTML("beforeend", errorMsg);
+      document.querySelector(".form .alert").innerHTML = errorMsg;
     }
   },
 };
