@@ -144,15 +144,16 @@ table td {
   background: white;
 }
 
-td.description {
-}
-
 td.income {
   font-weight: 500;
 }
 
 td.spending {
   font-weight: 500;
+}
+
+.delete {
+  cursor: pointer;
 }
 
 /* MODAL ******************************/
@@ -205,6 +206,7 @@ td.spending {
 }
 
 .input-group.actions {
+  margin-top: 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;

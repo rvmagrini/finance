@@ -80,11 +80,14 @@ const DOM = {
         <td class="icon">
             <img src=${isIncome ? "img/plus.svg" : "img/minus.svg"} alt="" />
         </td>
-        <td class=${isIncome ? "income" : "spending"}>${amount}</td>
+        <td class=${isIncome ? "income" : "spending"}>${amount.replace(
+      "-",
+      ""
+    )}</td>
         <td class="description">${movement.description}</td>
         <td class="date">${movement.date}</td>
-        <td class="delete">
-            <img onclick="Movements.remove(${index})" src="img/delete.svg" alt="Delete Movement" />
+        <td>
+            <img class="delete" onclick="Movements.remove(${index})" src="img/delete.svg" alt="Delete Movement" />
         </td>
         `;
     return html;
@@ -96,7 +99,7 @@ const DOM = {
     );
     document.querySelector(".spendingDisplay").innerHTML = Utils.formatCurrency(
       Movements.spending()
-    );
+    ).replace("-", "");
     document.querySelector(".balanceDisplay").innerHTML = Utils.formatCurrency(
       Movements.balance()
     );
@@ -132,12 +135,8 @@ const Form = {
   },
   formatValues() {
     let { description, amount, date } = Form.getValues();
-
     amount = Utils.formatAmount(amount);
-
     date = Utils.formatDate(date);
-
-    console.log(date);
 
     return {
       description,
