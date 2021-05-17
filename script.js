@@ -133,6 +133,7 @@ const Form = {
       throw new Error("Please fill out all required fields.");
     }
   },
+
   formatValues() {
     let { description, amount, date } = Form.getValues();
     amount = Utils.formatAmount(amount);
