@@ -156,6 +156,10 @@ td.spending {
   cursor: pointer;
 }
 
+.icon {
+  text-align: center;
+}
+
 /* MODAL ******************************/
 .modal-overlay {
   width: 100%;
@@ -273,7 +277,7 @@ footer {
 
 @media (max-width: 430px) {
   .data-table {
-    font-size: 85%;
+    font-size: 87.5%;
   }
 
   table td,
