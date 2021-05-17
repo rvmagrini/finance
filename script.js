@@ -86,7 +86,7 @@ const DOM = {
     )}</td>
         <td class="description">${movement.description}</td>
         <td class="date">${movement.date}</td>
-        <td class="icon">
+        <td>
             <img class="delete" onclick="Movements.remove(${index})" src="img/delete.svg" alt="Delete Movement" />
         </td>
         `;

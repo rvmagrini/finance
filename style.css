@@ -152,10 +152,6 @@ td.spending {
   font-weight: 500;
 }
 
-.icon {
-  text-align: center;
-}
-
 .delete {
   cursor: pointer;
 }
@@ -272,16 +268,5 @@ footer {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 1rem;
-  }
-}
-
-@media (max-width: 430px) {
-  .data-table {
-    font-size: 85%;
-  }
-
-  table td,
-  table th {
-    padding: 0.2rem;
   }
 }
