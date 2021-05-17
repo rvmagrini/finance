@@ -270,3 +270,14 @@ footer {
     gap: 1rem;
   }
 }
+
+@media (max-width: 430px) {
+  .data-table {
+    font-size: 85%;
+  }
+
+  table td,
+  table th {
+    padding: 0.2rem;
+  }
+}
